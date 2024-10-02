@@ -170,6 +170,31 @@ long long lcm(int a, int b)
     return (a / GCD(a, b)) * b;
 }
 
+lcm multiplie
+#include<iostream>
+
+using namespace std;
+
+int lcm(int a, int b){
+    int high=max(a,b);
+    while(high%a!=0 || high%b!=0){
+        high++;
+    }
+    return high;
+}
+
+int main(){
+    int arr[5];
+    for(int i=0;i<5;i++){
+        cin>>arr[i];
+    }
+    int temp=arr[0];
+    for(int i=1;i<5;i++){
+        temp=lcm(temp,arr[i]);
+    }
+    cout<<temp;
+}
+
 //--------------------------------------------------------------------------------------------------------
 Greedy_Algorithms
 #include <bits/stdc++.h>

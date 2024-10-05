@@ -1,8 +1,8 @@
 let Arr = [1, 8, 9, 3, 10, 100, 5, 6, 7, 8, 2, 99];
-let mx = 0;
+let Even = [];
 for(i=0; i<Arr.length; i++) {
-    if(mx < Arr[i]) {
-        mx = Arr[i];
+    if(Arr[i] % 2 == 0) {
+        Even.push(Arr[i]);
     }
 }
-console.log(mx);
+console.log(Even);

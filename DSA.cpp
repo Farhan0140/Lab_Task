@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
+=======
+IPOST
+>>>>>>> 83e4375d0b69948924f8ebc9bf6e5d73d1512837
 
 //-----------------------------------------------
 void Adjacency_Matrix_to_List(vector<vector<ll>> list, ll n) {
@@ -303,6 +307,94 @@ int main(){
         for(int j=1; j<=W; j++) {
             if(weight[i-1] <= j) {
                 int option_1 = DP[i-1][j - weight[i-1]] + value[i-1];
+                int option_2 = DP[i-1][j];
+                DP[i][j] = max(option_1, option_2);
+
+                // DP[i][j] = max(DP[i-1][j - weight[i-1]] + value[i-1], DP[i-1][j])
+            } else {
+                DP[i][j] = DP[i-1][j];
+            }
+        }
+    }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Collection</title>
+</head>
+<body>
+    <script>
+        const movieCollection={
+            title: ["Oppenheimer","Taken","The Dark Knight","Interstellar","Wanted"],
+            director: ["Christopher Nolan","Pierre Morel","Christopher Nolan","Christopher Nolan","Timur Bekmambetov"],
+            year: [2023,2008,2008,2014,2008],
+            rating: [8.3,7.7,9,8.7,6.7],
+            
+            addMovie(title, director, year, rating){
+                this.title.push(title);
+                this.director.push(director);
+                this.year.push(year);
+                this.rating.push(rating);
+            },
+            removeMovie(){
+                this.title.pop();
+                this.director.pop();
+                this.year.pop();
+                this.rating.pop();
+            },
+            search_by_director(director){
+                let index=[];
+                for(let i=0;i<this.director.length;i++){
+                    if(this.director[i]==director){
+                        index.push(i);
+                    }
+                }
+                if(index.length!=0){
+                    document.write("The Movies of ",director," is/are,<br>");
+                    for(let i=0;i<index.length;i++){
+                        document.write(this.title[index[i]],"<br>");
+                    }
+                    document.write("<br>");
+                }
+                else{
+                    document.write("There is no movie of ",director," in our collection.<br>")
+                }
+            },
+            search_by_year(year){
+                let index=[];
+                for(let i=0;i<this.year.length;i++){
+                    if(this.year[i]==year){
+                        index.push(i);
+                    }
+                }
+                if(index.length!=0){
+                    document.write("The Movies from ",year," is/are,<br>");
+                    for(let i=0;i<index.length;i++){
+                        document.write(this.title[index[i]],"<br>");
+                    }
+                    document.write("<br>");
+                }
+                else{
+                    document.write("There is no movie from ",year," in our collection.<br>")
+                }
+            }
+        }
+        
+
+        movieCollection.addMovie("The Happining", "M. Night Shyamalan", "2008", "5");
+        movieCollection.search_by_director("Christopher Nolan");
+        movieCollection.search_by_year(2008);
+        movieCollection.search_by_director("M. Night Shyamalan");
+        movieCollection.removeMovie();
+        movieCollection.search_by_year(2008);
+        movieCollection.search_by_director("M. Night Shyamalan");
+        movieCollection.search_by_year(2009);
+    </script>
+</body>
+</html>
+[j - weight[i-1]] + value[i-1];
                 int option_2 = DP[i-1][j];
                 DP[i][j] = max(option_1, option_2);
 

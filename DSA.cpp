@@ -396,3 +396,57 @@ int main(){
     cout << DP[n][sum] << endl;
     return 0;
 }
+
+//n queen-----------------------------------------------
+int board[100][100];
+int N;
+
+bool isSafe(int row, int column){
+    for(int r=row-1;r>=0;r--)
+        if(board[r][column] == 1)
+            return false;
+
+    for(int i=1;i<=min(row, column);i++)
+        if(board[row-i][column-i] == 1)
+            return false;
+
+    for(int i=1;i<=min(N-row+1, N-column+1);i++)
+        if(board[row-i][column+i] == 1)
+            return false;
+
+    return true;
+}
+
+bool solve(int row){
+    if(row == N){
+        // print solution
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++)
+                cout << board[i][j] << " ";
+            cout << endl;
+        }
+
+        return true;
+    }
+
+    for(int c=0;c<N;c++){
+        if( isSafe(row, c) ){
+            board[row][c] = 1;
+            if( solve(row+1) )
+                return true;
+            board[row][c] = 0;
+        }
+    }
+
+    return false;
+}
+
+int main(){
+    cin >> N;
+    for(int i=0;i<N;i++)
+        for(int j=0;j<N;j++)
+            board[i][j] = 0;
+
+    if( !solve(0) )
+        cout << "No Solution Exist";
+}
